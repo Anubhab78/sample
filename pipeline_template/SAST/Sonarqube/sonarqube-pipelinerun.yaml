@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: sonarqube-run
+spec:
+  pipelineRef:
+    name: sonarqube-pipeline
+  workspaces:
+    - name: shared-workspace
+      persistentvolumeclaim:
+        claimName: sonar-source-pvc
+    - name: sonar-settings
+      emptyDir: {}
